@@ -2,6 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import OffCanvasCart from './OffCanvasCart';
 
 const NavMenu = () => {
   return (
@@ -14,15 +15,21 @@ const NavMenu = () => {
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='m-auto gap-lg-5 fw-semibold fs-5 text-uppercase'>
             <Nav.Link href='#home'>Home</Nav.Link>
-            <Nav.Link href='#link'>Store</Nav.Link>
-            <Nav.Link href='#link'>About</Nav.Link>
+            <Nav.Link href='#store'>Store</Nav.Link>
+            <Nav.Link href='#about'>About</Nav.Link>
           </Nav>
-          <button className='btn btn-outline-primary position-relative mt-3 mt-lg-auto'>
-            Cart{' '}
-            <span className='position-absolute top-0 start-100 translate-middle badge rounded-5 bg-success'>
-              99+
-            </span>
-          </button>
+          <OffCanvasCart
+            placement={'end'}
+            name={'Cart'}
+            scroll={false}
+            btn={{
+              variant: 'outline-primary',
+              size: 'md',
+              text: 'Cart',
+              className: 'position-relative',
+            }}
+            btnSpan={{ itemsInCart: 10 }}
+          ></OffCanvasCart>
         </Navbar.Collapse>
       </Container>
     </Navbar>

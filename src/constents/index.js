@@ -27,3 +27,30 @@ export const productsArr = [
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
   },
 ];
+
+export const cartItems = {
+  items: [
+    {
+      id: 1,
+      name: 'Album 1',
+      price: 20.99,
+      imgUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+      qty: 10,
+    },
+    {
+      id: 2,
+      name: 'Album 2',
+      price: 20.99,
+      imgUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+      qty: 5,
+    },
+    {
+      id: 3,
+      name: 'Album 3',
+      price: 20.99,
+      imgUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+      qty: 12,
+    },
+  ],
+  totalAmount: 49,
+};
