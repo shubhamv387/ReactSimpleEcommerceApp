@@ -4,6 +4,7 @@ export const productsArr = [
     title: 'Colors',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    rating: 1.6,
   },
 
   {
@@ -11,6 +12,7 @@ export const productsArr = [
     title: 'Black and white Colors',
     price: 50,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+    rating: 2,
   },
 
   {
@@ -18,6 +20,7 @@ export const productsArr = [
     title: 'Yellow & Black Colors',
     price: 70,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+    rating: 3.8,
   },
 
   {
@@ -25,6 +28,7 @@ export const productsArr = [
     title: 'Blue Color',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+    rating: 4,
   },
 ];
 

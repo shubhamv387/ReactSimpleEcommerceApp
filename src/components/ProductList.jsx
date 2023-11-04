@@ -1,6 +1,6 @@
 import React from 'react';
 import { productsArr } from '../constents';
-import { Row, Container, Button, Col } from 'react-bootstrap';
+import { Row, Container, Col } from 'react-bootstrap';
 import ProductModel from './ProductModel';
 import OffCanvasCart from './OffCanvasCart';
 

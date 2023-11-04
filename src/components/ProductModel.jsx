@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Button, Card, CardHeader, CardBody } from 'react-bootstrap';
+import Rating from './Rating';
 
 const ProductModel = ({ product, index }) => {
   let classes = `d-flex justify-content-center ${
@@ -15,6 +16,7 @@ const ProductModel = ({ product, index }) => {
         </CardHeader>
         <CardBody className='d-flex justify-content-between align-items-center'>
           <p className='d-flex mb-0 fw-bold fs-5'>$ {product.price}</p>
+          <Rating className='rating' value={product.rating} />
           <Button size='sm' variant='primary'>
             ADD TO CART
           </Button>
