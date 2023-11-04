@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import OffCanvasCart from './OffCanvasCart';
+import CartContext from '../store/cart-context';
 
 const NavMenu = () => {
+  const cartCtx = useContext(CartContext);
+
+  const itemsInCart = cartCtx.items.reduce(
+    (curNum, item) => curNum + item.qty,
+    0
+  );
+
   return (
     <Navbar fixed='top' expand='lg' className='bg-body-tertiary'>
       <Container>
@@ -28,7 +36,7 @@ const NavMenu = () => {
               text: 'Cart',
               className: 'position-relative',
             }}
-            btnSpan={{ itemsInCart: 10 }}
+            btnSpan={{ itemsInCart }}
           ></OffCanvasCart>
         </Navbar.Collapse>
       </Container>

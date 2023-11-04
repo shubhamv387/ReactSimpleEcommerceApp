@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Col, Button, Card, CardHeader, CardBody } from 'react-bootstrap';
 import Rating from './Rating';
+import CartContext from '../store/cart-context';
 
 const ProductModel = ({ product, index }) => {
   let classes = `d-flex justify-content-center ${
     index % 2 === 0 ? 'justify-content-md-end' : 'justify-content-md-start'
   }`;
+
+  const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = (product) => {
+    const { id, title, price, imageUrl } = product;
+    const item = { id, title, price, imageUrl, qty: 1 };
+
+    return cartCtx.addItem(item);
+  };
 
   return (
     <Col md='6' className={classes}>
@@ -17,7 +27,11 @@ const ProductModel = ({ product, index }) => {
         <CardBody className='d-flex justify-content-between align-items-center'>
           <p className='d-flex mb-0 fw-bold fs-5'>$ {product.price}</p>
           <Rating className='rating' value={product.rating} />
-          <Button size='sm' variant='primary'>
+          <Button
+            size='sm'
+            onClick={() => addToCartHandler(product)}
+            variant='primary'
+          >
             ADD TO CART
           </Button>
         </CardBody>

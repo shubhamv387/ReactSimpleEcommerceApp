@@ -44,17 +44,24 @@ export const cartItems = {
     {
       id: 2,
       name: 'Album 2',
-      price: 20.99,
+      price: 50,
       imgUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
       qty: 5,
     },
     {
       id: 3,
       name: 'Album 3',
-      price: 20.99,
+      price: 15.5,
       imgUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
       qty: 12,
     },
   ],
-  totalAmount: 49,
+  totalAmount: 645.9,
 };
+
+// let totalAmount = cartItems.items.reduce(
+//   (acc, curr) => (acc += curr.price * curr.qty),
+//   0
+// );
+
+// console.log(totalAmount);
