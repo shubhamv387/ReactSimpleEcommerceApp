@@ -16,15 +16,15 @@ const NavMenu = () => {
   return (
     <Navbar fixed='top' expand='lg' className='bg-body-tertiary'>
       <Container>
-        <Navbar.Brand className='fs-3 fw-semibold' href='#home'>
+        <Navbar.Brand className='fs-3 fw-semibold' href='/'>
           The Generics
         </Navbar.Brand>
         <Navbar.Toggle className='me-4' aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='m-auto gap-lg-5 fw-semibold fs-5 text-uppercase'>
             <Nav.Link href='/'>Home</Nav.Link>
-            <Nav.Link href='#store'>Store</Nav.Link>
-            <Nav.Link href='#about'>About</Nav.Link>
+            <Nav.Link href='/store'>Store</Nav.Link>
+            <Nav.Link href='/about'>About</Nav.Link>
           </Nav>
           <OffCanvasCart
             placement={'end'}
