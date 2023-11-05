@@ -22,7 +22,7 @@ const NavMenu = () => {
         <Navbar.Toggle className='me-4' aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='m-auto gap-lg-5 fw-semibold fs-5 text-uppercase'>
-            <Nav.Link href='#home'>Home</Nav.Link>
+            <Nav.Link href='/'>Home</Nav.Link>
             <Nav.Link href='#store'>Store</Nav.Link>
             <Nav.Link href='#about'>About</Nav.Link>
           </Nav>

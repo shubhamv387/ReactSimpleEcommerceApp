@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Col, Container, Row, Image, Button, Offcanvas } from 'react-bootstrap';
 import CartContext from '../store/cart-context';
+import { toast } from 'react-toastify';
 
 function OffCanvasCart({ name, btn, btnSpan, ...props }) {
   const cartCtx = useContext(CartContext);
@@ -11,6 +12,11 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const orderHandler = () => {
+    toast.success('Order placed. Enjoy!', { position: 'top-center' });
+    cartCtx.order();
+  };
 
   return (
     <>
@@ -95,7 +101,7 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
               </h4>
 
               <Button
-                onClick={cartCtx.order}
+                onClick={orderHandler}
                 size='lg'
                 className='fw-semibold align-self-center'
               >

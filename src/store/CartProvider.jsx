@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import CartContext from './cart-context';
+import { toast } from 'react-toastify';
 
 const initialCartState = { items: [], totalAmount: 0 };
 
@@ -50,7 +51,6 @@ const cartReducer = (state, action) => {
   }
 
   if (action.type === 'ORDER') {
-    alert('Order placed. Enjoy!');
     return initialCartState;
   }
   return state;

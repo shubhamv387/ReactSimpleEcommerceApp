@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Col, Button, Card, CardHeader, CardBody } from 'react-bootstrap';
 import Rating from './Rating';
 import CartContext from '../store/cart-context';
+import { toast } from 'react-toastify';
 
 const ProductModel = ({ product, index }) => {
   let classes = `d-flex justify-content-center ${
@@ -14,6 +15,7 @@ const ProductModel = ({ product, index }) => {
     const { id, title, price, imageUrl } = product;
     const item = { id, title, price, imageUrl, qty: 1 };
 
+    toast.success('Item added to the cart!', { position: 'bottom-right' });
     return cartCtx.addItem(item);
   };
 
