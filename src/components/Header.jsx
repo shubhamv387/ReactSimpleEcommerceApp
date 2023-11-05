@@ -11,9 +11,7 @@ const Header = () => {
     <header className='position-relative'>
       <Navbar />
       <div
-        className={`d-flex flex-column w-100 justify-content-center align-items-center py-5 ${
-          pathname === '/' && 'pt-2'
-        } bg-secondary text-white`}
+        className='d-flex flex-column w-100 justify-content-center align-items-center  bg-secondary text-white py-4'
         style={{ marginTop: '4rem' }}
       >
         <h1 className='mb-4 display-1 fw-semibold'>The Generics</h1>
