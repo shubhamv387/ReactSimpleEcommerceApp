@@ -3,7 +3,10 @@ import { Image } from 'react-bootstrap';
 
 const About = () => {
   return (
-    <section className='d-flex gap-3 m-auto flex-column justify-content-center align-items-center w-75'>
+    <section
+      className='d-flex gap-3 m-auto flex-column justify-content-center align-items-center w-100'
+      style={{ maxWidth: '900px' }}
+    >
       <h1 className='fs-4 fw-bold'>ABOUT US</h1>
       <div className=''>
         <Image

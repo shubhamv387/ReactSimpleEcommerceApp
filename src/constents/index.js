@@ -32,6 +32,45 @@ export const productsArr = [
   },
 ];
 
+export const musicList = [
+  {
+    id: 1,
+    date: 'JUL 16',
+    city: 'DETROIT, MI',
+    venue: 'DTE ENERGY MUSIC THEATRE',
+  },
+  {
+    id: 2,
+    date: 'JUL 27',
+    city: 'TORONTO,ON',
+    venue: 'BUDWEISER STAGE',
+  },
+  {
+    id: 3,
+    date: 'AUG 10',
+    city: 'BRISTOW, VA',
+    venue: 'JIGGY LUBE LIVE',
+  },
+  {
+    id: 4,
+    date: 'AUG 22',
+    city: 'PHOENIX, AZ',
+    venue: 'AK-CHIN PAVILION',
+  },
+  {
+    id: 5,
+    date: 'SEP 11',
+    city: 'LAS VEGAS, NV',
+    venue: 'T-MOBILE ARENA',
+  },
+  {
+    id: 6,
+    date: 'SEP 24',
+    city: 'CONCORD, CA',
+    venue: 'CONCORD PAVILION',
+  },
+];
+
 // export const cartItems = {
 //   items: [
 //     {
