@@ -1,14 +1,20 @@
 import React from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import NavMenu from '../components/NavMenu';
 
 const Error = () => {
   return (
     <>
-      <Header />
-      <main className='my-3 d-flex mx-auto container-xxl p-lg-4 p-sm-3 p-2'>
+      <NavMenu />
+      <main
+        className='mb-3 d-flex mx-auto container-xxl p-lg-4 p-sm-3 p-2'
+        style={{ marginTop: '4rem', minHeight: 'calc(100vh - 225px)' }}
+      >
         <section className='d-flex align-items-center justify-content-center w-100'>
-          <h1>Page Not Found!</h1>
+          <div className='d-flex flex-column align-items-center gap-2'>
+            <h1>An error occurred!</h1>
+            <p className='fs-5'>Could not find this page!</p>
+          </div>
         </section>
       </main>
       <Footer />
