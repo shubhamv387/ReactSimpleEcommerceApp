@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import OffCanvasCart from './OffCanvasCart';
 import CartContext from '../store/cart-context';
+import { Link } from 'react-router-dom';
 
 const NavMenu = () => {
   const cartCtx = useContext(CartContext);
@@ -25,6 +26,9 @@ const NavMenu = () => {
             <Nav.Link href='/'>Home</Nav.Link>
             <Nav.Link href='/store'>Store</Nav.Link>
             <Nav.Link href='/about'>About</Nav.Link>
+            {/* <Link className='text-decoration-none text-dark' to='/about'>
+              About
+            </Link> */}
           </Nav>
           <OffCanvasCart
             placement={'end'}
