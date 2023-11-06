@@ -1,12 +1,10 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
+import Section from '../components/UI/Section';
 
 const About = () => {
   return (
-    <section
-      className='d-flex gap-3 m-auto flex-column justify-content-center align-items-center w-100'
-      style={{ maxWidth: '900px' }}
-    >
+    <Section>
       <h1 className='fs-4 fw-bold'>ABOUT US</h1>
       <div className=''>
         <Image
@@ -40,7 +38,7 @@ const About = () => {
           him? Him whom something large cisterns.
         </p>
       </div>
-    </section>
+    </Section>
   );
 };
 

@@ -1,15 +1,13 @@
 import React from 'react';
 import MusicList from '../components/MusicList';
+import Section from '../components/UI/Section';
 
 const Home = () => {
   return (
-    <section
-      className='d-flex gap-3 m-auto flex-column justify-content-center align-items-center w-100'
-      style={{ maxWidth: '900px' }}
-    >
+    <Section>
       <h1 className='fs-4 fw-bold'>TOURS</h1>
       <MusicList />
-    </section>
+    </Section>
   );
 };
 

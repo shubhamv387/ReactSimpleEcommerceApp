@@ -11,6 +11,7 @@ import Shop from './pages/Shop';
 import Home from './pages/Home';
 import RootLayout from './pages/RootLayout';
 import ErrorPage from './pages/ErrorPage';
+import Contact from './pages/Contact';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,7 @@ function App() {
         { path: '/', element: <Home /> },
         { path: '/about', element: <About /> },
         { path: '/store', element: <Shop /> },
+        { path: '/contact', element: <Contact /> },
       ],
     },
   ]);
