@@ -1,1 +1,7 @@
-
+nav .navbar-nav a {
+  transition: all 0.15s ease-in-out;
+}
+nav .navbar-nav a:hover,
+.active {
+  color: #0d6efd !important;
+}

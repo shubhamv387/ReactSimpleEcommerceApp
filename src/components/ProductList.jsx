@@ -20,7 +20,12 @@ const ProductList = () => {
               placement={'end'}
               name={'Cart'}
               scroll={false}
-              btn={{ variant: 'secondary', size: 'lg', text: 'See The Cart' }}
+              btn={{
+                variant: 'secondary',
+                size: 'lg',
+                text: 'See The Cart',
+                className: 'd-flex gap-2 align-items-center',
+              }}
               className='offcanvas'
             />
           </Col>

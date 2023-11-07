@@ -2,11 +2,10 @@ import { useContext, useState } from 'react';
 import { Col, Container, Row, Image, Button, Offcanvas } from 'react-bootstrap';
 import CartContext from '../store/cart-context';
 import { toast } from 'react-toastify';
+import { RiShoppingCartFill } from 'react-icons/ri';
 
 function OffCanvasCart({ name, btn, btnSpan, ...props }) {
   const cartCtx = useContext(CartContext);
-
-  // console.log(cartCtx);
 
   const [show, setShow] = useState(false);
 
@@ -21,6 +20,7 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
   return (
     <>
       <Button {...btn} onClick={handleShow}>
+        <RiShoppingCartFill />
         {btn.text}
         {btnSpan && (
           <span className='position-absolute top-0 start-100 translate-middle badge rounded-5 bg-success'>

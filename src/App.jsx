@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import RootLayout from './pages/RootLayout';
 import ErrorPage from './pages/ErrorPage';
 import Contact from './pages/Contact';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,7 @@ function App() {
         { path: '/', element: <Home /> },
         { path: '/about', element: <About /> },
         { path: '/store', element: <Shop /> },
+        { path: '/products/:productId', element: <ProductDetails /> },
         { path: '/contact', element: <Contact /> },
       ],
     },

@@ -28,15 +28,14 @@ const Contact = () => {
 
     try {
       const { data } = await axios.post(
-        'https://react-http-4c3ab-default-rtdb.firebaseio.com/contact-data.json',
+        `${import.meta.env.VITE_FIREBASE_URL}/contact-data.json`,
         formData
       );
 
       console.log(data);
+      setFormData({ fullName: '', email: '', phone: '' });
     } catch (error) {
       console.log(error.message);
-    } finally {
-      setFormData({ fullName: '', email: '', phone: '' });
     }
   };
 

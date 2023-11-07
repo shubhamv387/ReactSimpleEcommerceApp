@@ -3,6 +3,9 @@ import { Col, Button, Card, CardHeader, CardBody } from 'react-bootstrap';
 import Rating from './Rating';
 import CartContext from '../store/cart-context';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+
+import { RiShoppingCartFill, RiEyeFill } from 'react-icons/ri';
 
 const ProductModel = ({ product, index }) => {
   let classes = `d-flex justify-content-center ${
@@ -26,16 +29,37 @@ const ProductModel = ({ product, index }) => {
           <h4>{product.title}</h4>
           <img className='w-100' src={product.imageUrl} alt={product.title} />
         </CardHeader>
-        <CardBody className='d-flex justify-content-between align-items-center'>
-          <p className='d-flex mb-0 fw-bold fs-5'>$ {product.price}</p>
-          <Rating className='rating' value={product.rating} />
-          <Button
-            size='sm'
-            onClick={() => addToCartHandler(product)}
-            variant='primary'
-          >
-            ADD TO CART
-          </Button>
+        <CardBody className='d-flex gap-2 flex-column justify-content-between'>
+          <div className='d-flex gap-1 flex-row justify-content-between align-items-center'>
+            <p className='d-flex mb-0 fw-bold fs-5'>$ {product.price}</p>
+            <Rating
+              className='rating d-flex'
+              starColor='text-dark'
+              value={product.rating}
+            />
+            <p className='d-flex mb-0'>{`${product.rateCount} ratings`}</p>
+          </div>
+
+          <div className='d-flex gap-2 justify-content-between'>
+            <Button
+              type='button'
+              className='w-100 display-6'
+              size='sm'
+              onClick={() => addToCartHandler(product)}
+              variant='primary'
+            >
+              <RiShoppingCartFill size={20} />
+            </Button>
+            <Link
+              className='text-decoration-none text-white w-100'
+              style={{ fontSize: '0.875rem' }}
+              to={`/products/${product.id}`}
+            >
+              <Button size='sm' variant='success' className='w-100'>
+                <RiEyeFill size={20} />
+              </Button>
+            </Link>
+          </div>
         </CardBody>
       </Card>
     </Col>
