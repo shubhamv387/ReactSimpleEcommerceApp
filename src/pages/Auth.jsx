@@ -56,7 +56,7 @@ const Auth = () => {
 
       toast.success('Successfully logged in!', { position: 'bottom-right' });
 
-      navigate('/');
+      navigate('/store');
 
       setFormData({ email: '', password: '' });
     } catch (error) {

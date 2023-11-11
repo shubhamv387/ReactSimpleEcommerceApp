@@ -14,6 +14,7 @@ import ProductDetails from './pages/ProductDetails';
 import Auth from './pages/Auth';
 import AuthContext from './store/auth-context';
 import { useContext } from 'react';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -43,7 +44,8 @@ function App() {
           <Route path='/login' element={<LoggedInRoute element={<Auth />} />} />
           <Route
             path='/forgot-password'
-            element={<LoggedInRoute element={<Auth />} />}
+            element={<ForgotPassword />}
+            // element={<LoggedInRoute element={<ForgotPassword />} />}
           />
 
           <Route
