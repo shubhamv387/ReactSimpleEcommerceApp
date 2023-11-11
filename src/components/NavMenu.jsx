@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,14 +6,23 @@ import OffCanvasCart from './OffCanvasCart';
 import CartContext from '../store/cart-context';
 import { NavLink } from 'react-router-dom';
 import '../index.css';
+import { Button } from 'react-bootstrap';
+import AuthContext from '../store/auth-context';
+import { toast } from 'react-toastify';
 
 const NavMenu = () => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
 
   const itemsInCart = cartCtx.items.reduce(
     (curNum, item) => curNum + item.qty,
     0
   );
+
+  const logoutHandler = () => {
+    authCtx.logout();
+    toast.success('logged out!', { position: 'bottom-right' });
+  };
 
   return (
     <Navbar fixed='top' expand='lg' className='bg-body-tertiary'>
@@ -22,27 +31,54 @@ const NavMenu = () => {
         <Navbar.Toggle className='me-4' aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='m-auto gap-lg-5 fw-semibold fs-5 text-uppercase'>
-            <NavLink className='text-decoration-none text-secondary' to='/'>
+            <NavLink
+              className='text-decoration-none text-secondary d-flex align-items-center'
+              to='/'
+            >
               Home
             </NavLink>
+            {authCtx.isLoggedIn && (
+              <NavLink
+                className='text-decoration-none text-secondary d-flex align-items-center'
+                to='/store'
+              >
+                Store
+              </NavLink>
+            )}
             <NavLink
-              className='text-decoration-none text-secondary'
-              to='/store'
-            >
-              Store
-            </NavLink>
-            <NavLink
-              className='text-decoration-none text-secondary'
+              className='text-decoration-none text-secondary d-flex align-items-center'
               to='/about'
             >
               About
             </NavLink>
             <NavLink
-              className='text-decoration-none text-secondary'
+              className='text-decoration-none text-secondary d-flex align-items-center'
               to='/contact'
             >
               Contact
             </NavLink>
+
+            {!authCtx.isLoggedIn && (
+              <>
+                <NavLink
+                  className='text-decoration-none text-secondary d-flex align-items-center'
+                  to='/login'
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  className='text-decoration-none text-secondary d-flex align-items-center'
+                  to='/register'
+                >
+                  Register
+                </NavLink>
+              </>
+            )}
+            {authCtx.isLoggedIn && (
+              <Button type='button' variant='danger' onClick={logoutHandler}>
+                Logout
+              </Button>
+            )}
           </Nav>
           <OffCanvasCart
             placement={'end'}

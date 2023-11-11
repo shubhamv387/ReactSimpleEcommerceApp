@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Section from '../components/UI/Section';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -45,13 +45,14 @@ const Contact = () => {
         <h1>Contact Us</h1>
         <p>fill the form below to contact us</p>
       </div>
+
       <div
         className='w-100 shadow-lg p-md-5 p-4 rounded-4 border border-1 border-secondary'
         style={{ maxWidth: '550px' }}
       >
         <Form className='w-100' onSubmit={formSubmitHandler}>
           <Form.Group className='mb-3' controlId='formBasicName'>
-            <Form.Label>Full Name:</Form.Label>
+            <Form.Label className='cursor-pointer'>Full Name:</Form.Label>
             <Form.Control
               onChange={inputHandler}
               type='text'
@@ -62,7 +63,7 @@ const Contact = () => {
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='formBasicEmail'>
-            <Form.Label>Email address:</Form.Label>
+            <Form.Label className='cursor-pointer'>Email address:</Form.Label>
             <Form.Control
               onChange={inputHandler}
               type='email'
@@ -73,7 +74,7 @@ const Contact = () => {
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='formBasicPhNumber'>
-            <Form.Label>Phone:</Form.Label>
+            <Form.Label className='cursor-pointer'>Phone:</Form.Label>
             <Form.Control
               onChange={inputHandler}
               type='text'

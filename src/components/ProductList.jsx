@@ -1,4 +1,3 @@
-import React from 'react';
 import { productsArr } from '../constents';
 import { Row, Container, Col } from 'react-bootstrap';
 import ProductModel from './ProductModel';

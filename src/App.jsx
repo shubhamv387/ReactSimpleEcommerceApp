@@ -3,9 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import CartProvider from './store/CartProvider';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import About from './pages/About';
 import Shop from './pages/Shop';
 import Home from './pages/Home';
@@ -13,22 +11,18 @@ import RootLayout from './pages/RootLayout';
 import ErrorPage from './pages/ErrorPage';
 import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
+import Auth from './pages/Auth';
+import AuthContext from './store/auth-context';
+import { useContext } from 'react';
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <RootLayout />,
-      errorElement: <ErrorPage />,
-      children: [
-        { path: '/', element: <Home /> },
-        { path: '/about', element: <About /> },
-        { path: '/store', element: <Shop /> },
-        { path: '/products/:productId', element: <ProductDetails /> },
-        { path: '/contact', element: <Contact /> },
-      ],
-    },
-  ]);
+  const authCtx = useContext(AuthContext);
+
+  const ProtectedRoute = ({ element }) =>
+    !authCtx.isLoggedIn ? <Navigate to='/login' /> : element;
+
+  const LoggedInRoute = ({ element }) =>
+    authCtx.isLoggedIn ? <Navigate to='/store' /> : element;
 
   return (
     <>
@@ -42,9 +36,37 @@ function App() {
         pauseOnHover
         theme='dark'
       />
-      <CartProvider>
-        <RouterProvider router={router} />
-      </CartProvider>
+
+      <Routes>
+        <Route path='/' element={<RootLayout />}>
+          <Route index element={<Home />} />
+          <Route path='/login' element={<LoggedInRoute element={<Auth />} />} />
+          <Route
+            path='/forgot-password'
+            element={<LoggedInRoute element={<Auth />} />}
+          />
+
+          <Route
+            path='/register'
+            element={<LoggedInRoute element={<Auth />} />}
+          />
+
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/about' element={<About />} />
+
+          <Route
+            path='/store'
+            element={<ProtectedRoute element={<Shop />} />}
+          />
+
+          <Route
+            path='/products/:productId'
+            element={<ProtectedRoute element={<ProductDetails />} />}
+          />
+
+          <Route path='*' element={<ErrorPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }

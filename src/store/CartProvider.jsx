@@ -1,6 +1,5 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import CartContext from './cart-context';
-import { toast } from 'react-toastify';
 
 const initialCartState = { items: [], totalAmount: 0 };
 
