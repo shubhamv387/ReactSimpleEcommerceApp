@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './NavMenu';
 import { useLocation } from 'react-router-dom';
 import { Button } from 'react-bootstrap';

@@ -1,32 +1,21 @@
-import { useReducer } from 'react';
+import { useContext, useEffect, useReducer } from 'react';
 import CartContext from './cart-context';
+import {
+  addToCart,
+  deleteFromCart,
+  getUserCart,
+  orderFromCart,
+} from '../services/cartServices';
+import AuthContext from '../store/auth-context';
 
-const initialCartState = { items: [], totalAmount: 0 };
+let initialCartState = { items: [], totalAmount: 0 };
 
 const cartReducer = (state, action) => {
   if (action.type === 'ADD_TO_CART') {
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.qty;
 
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => action.item.id === item.id
-    );
-
-    const existingCartItem = state.items[existingCartItemIndex];
-
-    let updatedItems;
-
-    if (existingCartItem) {
-      const updatedItem = {
-        ...existingCartItem,
-        qty: existingCartItem.qty + action.item.qty,
-      };
-
-      updatedItems = [...state.items];
-      updatedItems[existingCartItemIndex] = updatedItem;
-    } else {
-      updatedItems = state.items.concat(action.item);
-    }
+    let updatedItems = state.items.concat(action.item);
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
@@ -48,29 +37,65 @@ const cartReducer = (state, action) => {
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
+  if (action.type === 'GET_CART') {
+    const initialTotalAmount = action.cartItems.reduce(
+      (curNum, item) => curNum + item.price,
+      0
+    );
+
+    return { items: action.cartItems, totalAmount: initialTotalAmount };
+  }
 
   if (action.type === 'ORDER') {
-    return initialCartState;
+    return { items: [], totalAmount: 0 };
   }
   return state;
 };
 
 const CartProvider = (props) => {
+  const authCtx = useContext(AuthContext);
+
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     initialCartState
   );
 
+  useEffect(() => {
+    authCtx.isLoggedIn &&
+      getUserCart(authCtx.userEmail)
+        .then((data) => {
+          dispatchCartAction({ type: 'GET_CART', cartItems: data });
+        })
+        .catch((err) => console.log(err.message));
+
+    dispatchCartAction({ type: 'GET_CART', cartItems: [] });
+  }, [authCtx.isLoggedIn]);
+
   const addToCartHandler = (item) => {
-    dispatchCartAction({ type: 'ADD_TO_CART', item: item });
+    addToCart(authCtx.userEmail, item)
+      .then((data) => {
+        // console.log(data);
+        dispatchCartAction({ type: 'ADD_TO_CART', item: data });
+      })
+      .catch((err) => console.log(err.message));
   };
 
-  const removeFromCart = (id) => {
-    dispatchCartAction({ type: 'REMOVE_FROM_CART', id: id });
+  const removeFromCart = (id, _id) => {
+    deleteFromCart(authCtx.userEmail, _id)
+      .then((data) => {
+        // console.log(data);
+        dispatchCartAction({ type: 'REMOVE_FROM_CART', id: id });
+      })
+      .catch((err) => console.log(err.message));
   };
 
-  const order = () => {
-    dispatchCartAction({ type: 'ORDER' });
+  const order = (items) => {
+    orderFromCart(authCtx.userEmail, items)
+      .then((data) => {
+        // console.log(data);
+        dispatchCartAction({ type: 'ORDER' });
+      })
+      .catch((err) => console.log(err.message));
   };
 
   const cartContext = {

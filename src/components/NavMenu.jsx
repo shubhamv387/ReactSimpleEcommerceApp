@@ -14,6 +14,8 @@ const NavMenu = () => {
   const cartCtx = useContext(CartContext);
   const authCtx = useContext(AuthContext);
 
+  // console.log(cartCtx.items);
+
   const itemsInCart = cartCtx.items.reduce(
     (curNum, item) => curNum + item.qty,
     0

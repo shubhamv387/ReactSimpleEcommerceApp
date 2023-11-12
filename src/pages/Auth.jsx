@@ -52,7 +52,7 @@ const Auth = () => {
         returnSecureToken: true,
       });
 
-      authCtx.login(data.idToken);
+      authCtx.login(data.idToken, data.email);
 
       toast.success('Successfully logged in!', { position: 'bottom-right' });
 

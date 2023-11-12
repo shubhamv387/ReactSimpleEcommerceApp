@@ -14,7 +14,12 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
 
   const orderHandler = () => {
     toast.success('Order placed. Enjoy!', { position: 'top-center' });
-    cartCtx.order();
+    cartCtx.order(cartCtx.items);
+  };
+
+  const cartItemRemoveHandler = (id, _id) => {
+    cartCtx.removeItem(id, _id);
+    toast.success('item removed from cart!', { position: 'bottom-right' });
   };
 
   return (
@@ -56,7 +61,7 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
               </Row>
 
               {cartCtx.items.map((item) => (
-                <Row key={item.id} className='gap-2'>
+                <Row key={item._id} className='gap-2'>
                   <Col
                     className='align-items-center d-flex gap-2 border-black border-bottom py-2'
                     sm={6}
@@ -86,7 +91,7 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
                     <Button
                       size='sm'
                       variant='danger'
-                      onClick={() => cartCtx.removeItem(item.id)}
+                      onClick={() => cartItemRemoveHandler(item.id, item._id)}
                     >
                       X
                     </Button>

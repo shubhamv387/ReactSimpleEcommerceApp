@@ -34,7 +34,7 @@ const ProductDetails = () => {
       });
 
     toast.success('Item added to the cart!', { position: 'bottom-right' });
-    return cartCtx.addItem(item);
+    cartCtx.addItem(item);
   };
 
   return (

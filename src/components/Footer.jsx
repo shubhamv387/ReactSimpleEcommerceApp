@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BsYoutube, BsTwitter, BsFacebook } from 'react-icons/bs';
 
@@ -11,13 +10,13 @@ const Footer = () => {
             <h1 className='fw-bold text-white mb-0'>The Generics</h1>
           </Col>
           <Col className='d-flex gap-5 justify-content-center justify-content-md-end'>
-            <a href='http://facebook.com' target='_blank'>
+            <a href='http://facebook.com' rel='noreferrer' target='_blank'>
               <BsFacebook className='text-white' size={35} />
             </a>
-            <a href='http://twitter.com' target='_blank'>
+            <a href='http://twitter.com' rel='noreferrer' target='_blank'>
               <BsTwitter className='text-white' size={35} />
             </a>
-            <a href='http://youtube.com' target='_blank'>
+            <a href='http://youtube.com' rel='noreferrer' target='_blank'>
               <BsYoutube className='text-white' size={35} />
             </a>
           </Col>

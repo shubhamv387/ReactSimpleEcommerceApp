@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Col, Button, Card, CardHeader, CardBody } from 'react-bootstrap';
 import Rating from './Rating';
 import CartContext from '../store/cart-context';
@@ -18,8 +18,17 @@ const ProductModel = ({ product, index }) => {
     const { id, title, price, imageUrl } = product;
     const item = { id, title, price, imageUrl, qty: 1 };
 
+    const existingItemIndex = cartCtx.items.findIndex(
+      (i) => i.id === product.id
+    );
+
+    if (existingItemIndex !== -1)
+      return toast.warn('Item Already in the cart!', {
+        position: 'top-center',
+      });
+
     toast.success('Item added to the cart!', { position: 'bottom-right' });
-    return cartCtx.addItem(item);
+    cartCtx.addItem(item);
   };
 
   return (

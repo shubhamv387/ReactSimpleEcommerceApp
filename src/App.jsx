@@ -44,8 +44,8 @@ function App() {
           <Route path='/login' element={<LoggedInRoute element={<Auth />} />} />
           <Route
             path='/forgot-password'
-            element={<ForgotPassword />}
-            // element={<LoggedInRoute element={<ForgotPassword />} />}
+            // element={<ForgotPassword />}
+            element={<LoggedInRoute element={<ForgotPassword />} />}
           />
 
           <Route
