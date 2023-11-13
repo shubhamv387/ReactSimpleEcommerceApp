@@ -52,6 +52,7 @@ const cartReducer = (state, action) => {
 
 const CartProvider = (props) => {
   const authCtx = useContext(AuthContext);
+  let { isLoggedIn, userEmail } = authCtx;
 
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
@@ -59,15 +60,15 @@ const CartProvider = (props) => {
   );
 
   useEffect(() => {
-    authCtx.isLoggedIn &&
-      getUserCart(authCtx.userEmail)
+    isLoggedIn &&
+      getUserCart(userEmail)
         .then((data) => {
           dispatchCartAction({ type: 'GET_CART', cartItems: data });
         })
         .catch((err) => console.log(err.message));
 
     dispatchCartAction({ type: 'GET_CART', cartItems: [] });
-  }, [authCtx.isLoggedIn]);
+  }, [isLoggedIn, userEmail]);
 
   const addToCartHandler = (item) => {
     addToCart(authCtx.userEmail, item)

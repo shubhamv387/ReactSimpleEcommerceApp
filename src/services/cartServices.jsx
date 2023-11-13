@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl =
-  'https://crudcrud.com/api/25d5544f267c48899fd6faded4e828c2/cart';
+  'https://crudcrud.com/api/6fe0ea2972d74d158de3c6f8a97cbda0/cart';
 
 export const getUserCart = async (userEmail) => {
   try {

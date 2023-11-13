@@ -22,22 +22,15 @@ export const AuthProvider = (props) => {
 
   const timer = 30 * 60 * 1000;
 
-  const tokenExpireHandler = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('expiresIn');
-    setToken(null);
-    toast.error('Session expired! Login Again', { position: 'top-center' });
-  };
-
   useEffect(() => {
     if (Object.keys(localStorage).indexOf('expiresIn') !== -1) {
-      if (Date.now() - timer <= timeAtTokenCreated) {
+      if (Date.now() - timer > timeAtTokenCreated) {
         setTimeout(() => {
-          tokenExpireHandler();
-        }, timer - (Date.now() - timeAtTokenCreated));
-      } else {
-        tokenExpireHandler();
+          logoutHandler();
+          toast.error('Session expired! Login Again', {
+            position: 'top-center',
+          });
+        }, 500);
       }
     }
   }, []);
@@ -53,12 +46,13 @@ export const AuthProvider = (props) => {
     localStorage.setItem('expiresIn', Date.now());
   };
 
-  const logoutHandler = () => {
+  function logoutHandler() {
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
+    localStorage.removeItem('expiresIn');
     setToken(null);
     setUserEmail(null);
-  };
+  }
 
   const authContext = {
     token: token,
