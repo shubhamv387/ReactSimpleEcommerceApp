@@ -15,6 +15,7 @@ const Auth = () => {
 
   const isLogin = pathname === '/login';
 
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -45,7 +46,7 @@ const Auth = () => {
         import.meta.env.VITE_FIREBASE_API_KEY
       }`;
     }
-
+    setIsLoading(true);
     try {
       const { data } = await axios.post(url, {
         ...formData,
@@ -64,6 +65,8 @@ const Auth = () => {
         ? error.response.data.error.message
         : error.message;
       toast.error(errorMessage, { position: 'top-center' });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -119,9 +122,13 @@ const Auth = () => {
             </Form.Text>
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
-            {isLogin ? 'Login' : 'Register'}
-          </Button>
+          {isLoading ? (
+            <p className='my-4 fw-bold fs-5'>Sending Request...</p>
+          ) : (
+            <Button variant='primary' type='submit'>
+              {isLogin ? 'Login' : 'Register'}
+            </Button>
+          )}
         </Form>
 
         <div className='d-flex mt-4'>

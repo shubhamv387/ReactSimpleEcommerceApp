@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { Col, Container, Row, Image, Button, Offcanvas } from 'react-bootstrap';
 import CartContext from '../store/cart-context';
-import { toast } from 'react-toastify';
 import { RiShoppingCartFill } from 'react-icons/ri';
 
 function OffCanvasCart({ name, btn, btnSpan, ...props }) {
@@ -13,13 +12,11 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
   const handleShow = () => setShow(true);
 
   const orderHandler = () => {
-    toast.success('Order placed. Enjoy!', { position: 'top-center' });
     cartCtx.order(cartCtx.items);
   };
 
   const cartItemRemoveHandler = (id, _id) => {
     cartCtx.removeItem(id, _id);
-    toast.success('item removed from cart!', { position: 'bottom-right' });
   };
 
   return (

@@ -45,6 +45,7 @@ function App() {
         rtl={false}
         pauseOnHover
         theme='dark'
+        style={{ width: '100%', maxWidth: '350px' }}
       />
 
       <Routes>

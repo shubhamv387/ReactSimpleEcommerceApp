@@ -7,6 +7,7 @@ import {
   orderFromCart,
 } from '../services/cartServices';
 import AuthContext from '../store/auth-context';
+import { toast } from 'react-toastify';
 
 let initialCartState = { items: [], totalAmount: 0 };
 
@@ -76,6 +77,7 @@ const CartProvider = (props) => {
       .then((data) => {
         // console.log(data);
         dispatchCartAction({ type: 'ADD_TO_CART', item: data });
+        toast.success('Item added to the cart!', { position: 'bottom-right' });
       })
       .catch((err) => console.log(err.message));
   };
@@ -85,6 +87,7 @@ const CartProvider = (props) => {
       .then((data) => {
         // console.log(data);
         dispatchCartAction({ type: 'REMOVE_FROM_CART', id: id });
+        toast.success('item removed from cart!', { position: 'bottom-right' });
       })
       .catch((err) => console.log(err.message));
   };
@@ -94,6 +97,7 @@ const CartProvider = (props) => {
       .then((data) => {
         // console.log(data);
         dispatchCartAction({ type: 'ORDER' });
+        toast.success('Order placed. Enjoy!', { position: 'top-center' });
       })
       .catch((err) => console.log(err.message));
   };

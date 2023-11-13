@@ -12,7 +12,9 @@ const ForgotPassword = () => {
     e.preventDefault();
     const enteredEmail = emailInputRef.current.value;
 
-    toast.info('Feature is not implemented yet!');
+    toast.info('This feature is not implemented yet!', {
+      position: 'top-center',
+    });
     console.log(enteredEmail);
     emailInputRef.current.value = '';
   };
