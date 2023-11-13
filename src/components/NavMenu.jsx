@@ -28,12 +28,12 @@ const NavMenu = () => {
   };
 
   return (
-    <Navbar fixed='top' expand='lg' className='bg-body-tertiary pb-3'>
+    <Navbar fixed='top' expand='lg' className='bg-body-tertiary'>
       <Container>
         <Navbar.Brand className='fs-3 fw-semibold'>The Generics</Navbar.Brand>
         <Navbar.Toggle className='me-4' aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='m-auto gap-2 mb-2 gap-lg-5 fw-semibold fs-5 text-uppercase'>
+          <Nav className='m-auto gap-2 mb-2 mb-lg-auto gap-lg-5 fw-semibold fs-5 text-uppercase'>
             <NavLink
               className='text-decoration-none text-secondary d-flex align-items-center'
               to='/'

@@ -12,14 +12,23 @@ import { toast } from 'react-toastify';
 let initialCartState = { items: [], totalAmount: 0 };
 
 const cartReducer = (state, action) => {
-  if (action.type === 'ADD_TO_CART') {
-    const updatedTotalAmount =
-      state.totalAmount + action.item.price * action.item.qty;
+  if (action.type === 'GET_CART') {
+    const initialTotalAmount = action.cartItems.reduce(
+      (accPrice, item) => accPrice + item.price,
+      0
+    );
 
-    let updatedItems = state.items.concat(action.item);
+    return { items: action.cartItems, totalAmount: initialTotalAmount };
+  }
+
+  if (action.type === 'ADD_TO_CART') {
+    const updatedTotalAmount = state.totalAmount + action.item.price;
+
+    const updatedItems = state.items.concat(action.item);
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
+
   if (action.type === 'REMOVE_FROM_CART') {
     const existingCartItemIndex = state.items.findIndex(
       (item) => action.id === item.id
@@ -27,29 +36,17 @@ const cartReducer = (state, action) => {
 
     const existingCartItem = state.items[existingCartItemIndex];
 
-    const updatedTotalAmount =
-      state.totalAmount - existingCartItem.price * existingCartItem.qty;
+    const updatedTotalAmount = state.totalAmount - existingCartItem.price;
 
-    let updatedItems;
-
-    if (existingCartItem) {
-      updatedItems = state.items.filter((item) => item.id !== action.id);
-    }
+    const updatedItems = state.items.filter((item) => item.id !== action.id);
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
-  }
-  if (action.type === 'GET_CART') {
-    const initialTotalAmount = action.cartItems.reduce(
-      (curNum, item) => curNum + item.price,
-      0
-    );
-
-    return { items: action.cartItems, totalAmount: initialTotalAmount };
   }
 
   if (action.type === 'ORDER') {
     return { items: [], totalAmount: 0 };
   }
+
   return state;
 };
 
