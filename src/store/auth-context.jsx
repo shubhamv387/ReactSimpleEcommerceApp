@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const AuthContext = React.createContext({
   token: null,
@@ -11,12 +12,35 @@ const AuthContext = React.createContext({
 export const AuthProvider = (props) => {
   const initialToken = localStorage.getItem('token');
   const initialUserEmail = localStorage.getItem('userEmail');
+  const timeAtTokenCreated = localStorage.getItem('expiresIn');
 
   const [token, setToken] = useState(initialToken);
 
   const [userEmail, setUserEmail] = useState(initialUserEmail);
 
   const userIsLoggedIn = !!token;
+
+  const timer = 30 * 60 * 1000;
+
+  const tokenExpireHandler = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('expiresIn');
+    setToken(null);
+    toast.error('Session expired! Login Again', { position: 'top-center' });
+  };
+
+  useEffect(() => {
+    if (Object.keys(localStorage).indexOf('expiresIn') !== -1) {
+      if (Date.now() - timer <= timeAtTokenCreated) {
+        setTimeout(() => {
+          tokenExpireHandler();
+        }, timer - (Date.now() - timeAtTokenCreated));
+      } else {
+        tokenExpireHandler();
+      }
+    }
+  }, []);
 
   const loginHandler = (token, userEmail) => {
     localStorage.setItem('token', token);
@@ -26,6 +50,7 @@ export const AuthProvider = (props) => {
 
     localStorage.setItem('userEmail', newUserEmail);
     setUserEmail(newUserEmail);
+    localStorage.setItem('expiresIn', Date.now());
   };
 
   const logoutHandler = () => {
