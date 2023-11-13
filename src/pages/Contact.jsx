@@ -3,6 +3,7 @@ import Section from '../components/UI/Section';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,7 @@ const Contact = () => {
       );
 
       console.log(data);
+      toast.success('Thanks for your feedback!', { position: 'top-center' });
       setFormData({ fullName: '', email: '', phone: '' });
     } catch (error) {
       console.log(error.message);

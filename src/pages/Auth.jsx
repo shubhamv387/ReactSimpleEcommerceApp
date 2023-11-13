@@ -55,7 +55,10 @@ const Auth = () => {
 
       authCtx.login(data.idToken, data.email);
 
-      toast.success('Successfully logged in!', { position: 'bottom-right' });
+      toast.success(
+        isLogin ? 'Successfully logged in!' : 'Successfully account created!',
+        { position: 'bottom-right' }
+      );
 
       navigate('/store');
 
