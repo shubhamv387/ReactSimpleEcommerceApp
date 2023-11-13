@@ -1,11 +1,12 @@
-import { useContext } from 'react';
+import { useContext, lazy, Suspense } from 'react';
+import '../index.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import OffCanvasCart from './OffCanvasCart';
+// import OffCanvasCart from './OffCanvasCart';
+const OffCanvasCart = lazy(() => import('./OffCanvasCart.jsx'));
 import CartContext from '../store/cart-context';
 import { NavLink } from 'react-router-dom';
-import '../index.css';
 import { Button } from 'react-bootstrap';
 import AuthContext from '../store/auth-context';
 import { toast } from 'react-toastify';
@@ -27,12 +28,12 @@ const NavMenu = () => {
   };
 
   return (
-    <Navbar fixed='top' expand='lg' className='bg-body-tertiary'>
+    <Navbar fixed='top' expand='lg' className='bg-body-tertiary pb-3'>
       <Container>
         <Navbar.Brand className='fs-3 fw-semibold'>The Generics</Navbar.Brand>
         <Navbar.Toggle className='me-4' aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='m-auto gap-lg-5 fw-semibold fs-5 text-uppercase'>
+          <Nav className='m-auto gap-2 mb-2 gap-lg-5 fw-semibold fs-5 text-uppercase'>
             <NavLink
               className='text-decoration-none text-secondary d-flex align-items-center'
               to='/'
@@ -77,23 +78,30 @@ const NavMenu = () => {
               </>
             )}
             {authCtx.isLoggedIn && (
-              <Button type='button' variant='danger' onClick={logoutHandler}>
+              <Button
+                style={{ width: 'fit-content' }}
+                type='button'
+                variant='danger'
+                onClick={logoutHandler}
+              >
                 Logout
               </Button>
             )}
           </Nav>
-          <OffCanvasCart
-            placement={'end'}
-            name={'Cart'}
-            scroll={false}
-            btn={{
-              variant: 'outline-primary',
-              size: 'md',
-              text: 'Cart',
-              className: 'position-relative d-flex gap-1 align-items-center',
-            }}
-            btnSpan={{ itemsInCart }}
-          ></OffCanvasCart>
+          <Suspense fallback={<p>Loading...</p>}>
+            <OffCanvasCart
+              placement={'end'}
+              name={'Cart'}
+              scroll={false}
+              btn={{
+                variant: 'outline-primary',
+                size: 'md',
+                text: 'Your Cart',
+                className: 'position-relative d-flex gap-1 align-items-center',
+              }}
+              btnSpan={{ itemsInCart }}
+            />
+          </Suspense>
         </Navbar.Collapse>
       </Container>
     </Navbar>

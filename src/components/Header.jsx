@@ -1,4 +1,6 @@
-import Navbar from './NavMenu';
+import { lazy, Suspense } from 'react';
+// import Navbar from './NavMenu';
+const NavMenu = lazy(() => import('./NavMenu.jsx'));
 import { useLocation } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -8,7 +10,9 @@ const Header = () => {
 
   return (
     <header className='position-relative'>
-      <Navbar />
+      <Suspense fallback={<p>Loading...</p>}>
+        <NavMenu />
+      </Suspense>
       <div
         className='d-flex flex-column w-100 justify-content-center align-items-center  bg-secondary text-white py-4'
         style={{ marginTop: '4rem' }}

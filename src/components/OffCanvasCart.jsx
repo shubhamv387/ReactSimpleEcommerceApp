@@ -53,7 +53,7 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
                   <Col
                     key={index}
                     className='d-flex border-black border-bottom'
-                    sm={item.colSize}
+                    xs={item.colSize}
                   >
                     <h5>{item.name}</h5>
                   </Col>
@@ -64,7 +64,7 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
                 <Row key={item._id} className='gap-2'>
                   <Col
                     className='align-items-center d-flex gap-2 border-black border-bottom py-2'
-                    sm={6}
+                    xs={6}
                   >
                     <Image
                       src={item.imageUrl}
@@ -78,14 +78,14 @@ function OffCanvasCart({ name, btn, btnSpan, ...props }) {
 
                   <Col
                     className='justify-content-center align-items-center d-flex border-black border-bottom py-2'
-                    sm={2}
+                    xs={2}
                   >
                     <p className='mb-0'>${item.price}</p>
                   </Col>
 
                   <Col
                     className='justify-content-between align-items-center d-flex gap-2 border-black border-bottom py-2'
-                    sm={3}
+                    xs={3}
                   >
                     <p className='mb-0'>{item.qty}</p>
                     <Button

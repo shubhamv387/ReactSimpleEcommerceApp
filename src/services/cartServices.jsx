@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl =
-  'https://crudcrud.com/api/21d252ba1ff844bba88e745083bffa58/cart';
+  'https://crudcrud.com/api/864972869677495ebd244b203050969f/cart';
 
 export const getUserCart = async (userEmail) => {
   try {
@@ -38,6 +38,7 @@ export const orderFromCart = async (userEmail, items) => {
     items.forEach(async (item) => {
       await axios.delete(`${baseUrl}${userEmail}/${item._id}`);
     });
+
     return 'Order Successful!';
   } catch (error) {
     console.log(error.message);
