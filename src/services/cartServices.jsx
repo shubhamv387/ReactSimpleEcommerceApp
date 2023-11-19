@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl =
-  'https://crudcrud.com/api/6fe0ea2972d74d158de3c6f8a97cbda0/cart';
+  'https://crudcrud.com/api/ddf4f3786fcb493fb7657218a999c3fa/cart';
 
 export const getUserCart = async (userEmail) => {
   try {
@@ -9,6 +9,7 @@ export const getUserCart = async (userEmail) => {
     // console.log(data);
     return data;
   } catch (error) {
+    alert(error.message);
     console.log(error.message);
   }
 };
