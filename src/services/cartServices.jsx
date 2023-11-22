@@ -1,47 +1,16 @@
 import axios from 'axios';
 
 const baseUrl =
-  'https://crudcrud.com/api/ddf4f3786fcb493fb7657218a999c3fa/cart';
+  'https://crudcrud.com/api/eee8c322d9bf4167b0d8d31a78d730f8/cart';
 
 export const getUserCart = async (userEmail) => {
-  try {
-    const { data } = await axios.get(`${baseUrl}${userEmail}`);
-    // console.log(data);
-    return data;
-  } catch (error) {
-    alert(error.message);
-    console.log(error.message);
-  }
+  return axios.get(`${baseUrl}${userEmail}`);
 };
 
 export const addToCart = async (userEmail, item) => {
-  try {
-    const { data } = await axios.post(`${baseUrl}${userEmail}`, item);
-    // console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error.message);
-  }
+  return axios.post(`${baseUrl}${userEmail}`, item);
 };
 
 export const deleteFromCart = async (userEmail, _id) => {
-  try {
-    const { data } = await axios.delete(`${baseUrl}${userEmail}/${_id}`);
-    // console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const orderFromCart = async (userEmail, items) => {
-  try {
-    items.forEach(async (item) => {
-      await axios.delete(`${baseUrl}${userEmail}/${item._id}`);
-    });
-
-    return 'Order Successful!';
-  } catch (error) {
-    console.log(error.message);
-  }
+  return axios.delete(`${baseUrl}${userEmail}/${_id}`);
 };

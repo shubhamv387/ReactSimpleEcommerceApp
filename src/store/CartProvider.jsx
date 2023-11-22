@@ -4,7 +4,6 @@ import {
   addToCart,
   deleteFromCart,
   getUserCart,
-  orderFromCart,
 } from '../services/cartServices';
 import AuthContext from '../store/auth-context';
 import { toast } from 'react-toastify';
@@ -62,8 +61,8 @@ const CartProvider = (props) => {
   useEffect(() => {
     isLoggedIn &&
       getUserCart(userEmail)
-        .then((data) => {
-          dispatchCartAction({ type: 'GET_CART', cartItems: data });
+        .then(({ data }) => {
+          data && dispatchCartAction({ type: 'GET_CART', cartItems: data });
         })
         .catch((err) => console.log(err.message));
 
@@ -72,8 +71,7 @@ const CartProvider = (props) => {
 
   const addToCartHandler = (item) => {
     addToCart(authCtx.userEmail, item)
-      .then((data) => {
-        // console.log(data);
+      .then(({ data }) => {
         dispatchCartAction({ type: 'ADD_TO_CART', item: data });
         toast.success('Item added to the cart!', { position: 'bottom-right' });
       })
@@ -82,8 +80,7 @@ const CartProvider = (props) => {
 
   const removeFromCart = (id, _id) => {
     deleteFromCart(authCtx.userEmail, _id)
-      .then((data) => {
-        // console.log(data);
+      .then(() => {
         dispatchCartAction({ type: 'REMOVE_FROM_CART', id: id });
         toast.success('item removed from cart!', { position: 'bottom-right' });
       })
@@ -91,13 +88,16 @@ const CartProvider = (props) => {
   };
 
   const order = (items) => {
-    orderFromCart(authCtx.userEmail, items)
-      .then((data) => {
-        // console.log(data);
-        dispatchCartAction({ type: 'ORDER' });
-        toast.success('Order placed. Enjoy!', { position: 'top-center' });
-      })
-      .catch((err) => console.log(err.message));
+    try {
+      items.forEach(async (item) => {
+        await deleteFromCart(authCtx.userEmail, item._id);
+      });
+
+      dispatchCartAction({ type: 'ORDER' });
+      toast.success('Order placed. Enjoy!', { position: 'top-center' });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const cartContext = {
